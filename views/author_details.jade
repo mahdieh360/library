@@ -1,0 +1,13 @@
+extends layout
+  
+block content
+  a(href='/authors') Author Lists
+  h1= authorName
+  ul
+   // li= authorDetails
+    //li= authorDetails.authorName
+    //li= authorDetails.publisherName
+    //li= authorDetails.publisherAddress
+
+  each item in authorDetails
+   li= item.title

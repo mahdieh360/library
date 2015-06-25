@@ -1,0 +1,35 @@
+extends layout
+  
+block content
+  a(href='/') home
+  h1= title
+  p here is the list
+  ul
+   each book, index in books
+    //li= book.title
+    li 
+     a(href='/books/#{book.title}') #{book.title} 
+     //button(id=book.bookId onclick='deleteBook(#{book.bookId})') Delete  
+     //button(id=book.bookId) Update  
+     
+  form#formAddUser(name="addbook",method="post",action="/addbook")
+   input#bookName(type='text', placeholder='Enter Book name' name="bookname")
+   select(name='authorId')
+    option(value='') Author
+    each book in books 
+      option(value='#{book.authId}') #{book.authorName}
+   select(name='publisherId')
+    option(value='') Publisher
+    each book in books 
+      option(value='#{book.pubId}') #{book.publisherName}   
+   button#btnAddBook Add Book
+ 
+ /// Delete
+  script(type='text/javascript').
+   function deleteBook(bookId){
+    $.ajax({
+     url: '/books/'+bookId,
+     type: 'DELETE'
+     });
+   };
+ 

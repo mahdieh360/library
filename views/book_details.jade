@@ -1,0 +1,12 @@
+extends layout
+  
+block content
+  a(href='/books') Book Lists
+  h1= title
+  
+  ul
+    li= bookDetails.authorName
+    li= bookDetails.publisherName
+    li= bookDetails.publisherAddress
+    li= bookDetails.publisherPhone
+    
