@@ -29,3 +29,21 @@ exports.authorByName = function(req, res){
 			});
 
 	};
+
+// Add author
+exports.addAuthor = function(req, res){
+	var db=req.db;
+	var authorName = req.body.authorName;
+	var query= 'insert into tbl_author (authorName) values ("'+authorName +'");';
+	db.query(query, function(err, results, fields) {
+			  if (err) {
+		            // If it failed, return error
+		            res.send("There was a problem adding the information to the database.");
+		        }
+		        else {
+		            // And forward to success page
+		            res.redirect("authors");
+		        }
+			});
+
+};
