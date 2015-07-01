@@ -1,0 +1,17 @@
+extends layout
+  
+block content
+  a(href='/') home
+  h1= title
+  p Here is list of Authors
+  ul
+   each author, index in authors
+    //li= book.title
+    li 
+     a(href='/authors/#{author.authorName}') #{author.authorName} 
+     //button(id=book.bookId onclick='deleteBook(#{book.bookId})') Delete  
+     //button(id=book.bookId) Update
+     
+  form#formAddAuthor(name="addauthor",method="post",action="/addauthor")
+  input#authorname(type='text', placeholder='Enter Author name' name="authorName")
+  button#btnAddAuthor Add Author
