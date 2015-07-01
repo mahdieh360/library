@@ -53,17 +53,14 @@ exports.deleteBook = function(req, res){
 	
 	var db=req.db;	
 	var bookId = req.param("bookId");
-	console.log(bookId);
 	var query= 'delete from tbl_book where bookId='+bookId+';';
 	db.query(query, function(err, results, fields) {
 			  if (err) {
 		            // If it failed, return error
 		            res.send("There was a problem adding the information to the database.");
-		        }
-		        else {
+		        }else {
 		            // And forward to success page
-		        	
-		        	res.redirect("books");
+		          //  res.redirect("authors");
 		        }
 			});
 }

@@ -29,9 +29,10 @@ block content
    function deleteBook(bookId){
     $.ajax({
      url: '/books/'+bookId,
-     type: 'DELETE'
-     }).done(function( msg ) {
-     $(location).attr('href',"/books");  
-     });
+     method: 'DELETE',
+     success: function() {
+      alert("Success.");
+     }
+    })
    };
- 
+  

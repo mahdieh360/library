@@ -35,8 +35,7 @@ exports.authorByName = function(req, res){
 exports.addAuthor= function(req,res) {
 	var db=req.db;	
 	var authorName = req.body.authorName;
-	console.log("I am at author");
-	var query= 'insert into tbl_author (authorName) values ('+authorName +');';
+	var query= 'insert into tbl_author (authorName) values ("'+authorName +'");';
 	db.query(query, function(err, results, fields) {
 			  if (err) {
 		            // If it failed, return error
