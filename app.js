@@ -38,8 +38,6 @@ app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-
-
 db.connect();
 
 // development only
@@ -55,7 +53,7 @@ app.post('/addbook', book.addBook);
 app.delete('/books/:bookId', book.deleteBook);
 app.get('/authors', author.authorList);
 app.get('/authors/:authorName', author.authorByName);
-//app.post('/addauthor', author.addAuthor);
+app.post('/addauthor', author.addAuthor);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

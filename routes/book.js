@@ -5,8 +5,8 @@ db.query('select * from tbl_book join tbl_author on tbl_book.authId=tbl_author.a
 		  if (err) throw err;
 		  res.render('book', { title: 'BOOKS',
               books: results});		  
-		 // console.log({ title: 'BOOKS',
-         //               books: results});
+		//  console.log({ title: 'BOOKS',
+           //            books: results});
 		});
 
 };
@@ -62,7 +62,8 @@ exports.deleteBook = function(req, res){
 		        }
 		        else {
 		            // And forward to success page
-		            res.redirect("books");
+		        	
+		        	res.redirect("books");
 		        }
 			});
 }
