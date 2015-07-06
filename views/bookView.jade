@@ -31,7 +31,9 @@ block content
      url: '/books/'+bookId,
      method: 'DELETE',
      success: function() {
-      alert("Success.");
+      alert("Done!.");
+      $(location).attr('href', '/books');
+
      }
     })
    };

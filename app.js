@@ -7,6 +7,7 @@ var express = require('express')
   , user = require('./routes/user')
   , book =require('./routes/book')
   , author =require('./routes/author')
+  , publisher =require('./routes/publisher')
   , http = require('http')
   , path = require('path')
   , mysql = require('mysql');
@@ -54,6 +55,8 @@ app.delete('/books/:bookId', book.deleteBook);
 app.get('/authors', author.authorList);
 app.get('/authors/:authorName', author.authorByName);
 app.post('/addauthor', author.addAuthor);
+app.get('/publishers', publisher.publisherList);
+app.delete('/authors/:authorId', author.deleteAuthor);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

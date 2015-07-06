@@ -1,0 +1,30 @@
+extends layout
+  
+block content
+  a(href='/') home
+  h1= title
+  p Here is list of Authors
+  ul
+   each author, index in authorsData
+    li 
+     a(href='/authors/#{author.authorName}') #{author.authorName}
+     button(id=author.authorId onclick='deleteAuthorBtn(#{author.authorId})') Delete
+     //button(id=book.bookId) Update
+     
+  form#formAddAuthor(name="addauthor",method="post",action="/addauthor")
+   input#authorname(type='text', placeholder='Enter Author name' name="authorName")
+   button#btnAddAuthor Add Author
+
+
+  /// Delete
+  script(type='text/javascript').
+   function deleteAuthorBtn(authorId){
+    $.ajax({
+     url: '/authors/'+authorId,
+     method: 'DELETE',
+     success: function() {
+      alert("Success.");
+      $(location).attr('href', '/authors');
+     }
+    })
+   };

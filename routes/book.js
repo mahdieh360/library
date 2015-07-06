@@ -3,7 +3,7 @@ exports.bookList = function(req, res){
 var db=req.db;	
 db.query('select * from tbl_book join tbl_author on tbl_book.authId=tbl_author.authorId join tbl_publisher on tbl_book.pubId=tbl_publisher.publisherId', function(err, results, fields) {
 		  if (err) throw err;
-		  res.render('book', { title: 'BOOKS',
+		  res.render('bookView', { title: 'BOOKS',
               books: results});		  
 		//  console.log({ title: 'BOOKS',
            //            books: results});
@@ -15,7 +15,8 @@ db.query('select * from tbl_book join tbl_author on tbl_book.authId=tbl_author.a
 exports.bookByName = function(req, res){
 	var db=req.db;	
 	var bookTitle = req.param("title");
-	var query= 'select * from tbl_book join tbl_author on tbl_book.authId=tbl_author.authorId join tbl_publisher on tbl_book.pubId=tbl_publisher.publisherId where title= "'+ bookTitle +'";';
+	var query= 'select * from tbl_book right join tbl_author on tbl_book.authId=tbl_author.authorId left join tbl_publisher on tbl_book.pubId=tbl_publisher.publisherId where title= "'+ bookTitle +'";';
+    //var queryAll= 'select * from tbl_book right join tbl_author on tbl_book.authId=tbl_author.authorId left join tbl_publisher on tbl_book.pubId=tbl_publisher.publisherId';
 	db.query(query, function(err, results, fields) {
 			  if (err) throw err;
 			  res.render('book_details', { title:bookTitle,
@@ -60,7 +61,7 @@ exports.deleteBook = function(req, res){
 		            res.send("There was a problem adding the information to the database.");
 		        }else {
 		            // And forward to success page
-		          //  res.redirect("authors");
+		            res.send("Success");
 		        }
 			});
 }

@@ -1,10 +1,12 @@
 //get all authors
 exports.authorList = function(req, res){
 var db=req.db;	
-db.query('select * from tbl_author;', function(err, authoresults, fields) {
+db.query('select * from tbl_author;', function(err, authorResults, fields) {
 		  if (err) throw err;
-		  res.render('author', { title: 'AUTHORS',
-              authors: authoresults});
+		  res.render('authorView', { title: 'AUTHORS',
+                                     authorsData: authorResults
+                                     }
+                     );
 		  
 		  //console.log({ title: 'BOOKS',
                         //books: results});
@@ -24,7 +26,7 @@ exports.authorByName = function(req, res){
 			 
 			  res.render('author_details', { authorName:authname,
 				                          authorDetails: results});
-			  
+
 			  console.log(results);
 			});
 
@@ -47,3 +49,21 @@ exports.addAuthor= function(req,res) {
 		        }
 			});
 };
+
+//delete Author
+exports.deleteAuthor = function(req, res){
+	var db=req.db;
+	var authorId = req.param("authorId");
+	console.log(authorId);
+	var query= 'delete from tbl_author where authorId='+authorId+';';
+	db.query(query, function(err, results, fields) {
+			  if (err) {
+		            // If it failed, return error
+		            res.send("There was a problem deleting the information from the database.");
+		        }else {
+		            // And forward to success page
+		            console.log('success');
+		            res.send("Success");
+		        }
+			});
+}

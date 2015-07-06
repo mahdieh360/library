@@ -4,6 +4,6 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Library Managment trial version',
+  res.render('index', { title: 'Library Management trial version',
 	  						text:'the list of available options:'});
 };
